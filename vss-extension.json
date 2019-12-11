@@ -1,0 +1,143 @@
+{
+    "manifestVersion": 1,
+    "id": "datadog-monitors",
+    "name": "Datadog Monitors as Deployment Gates",
+    "version": "1.0.0",
+    "publisher": "Datadog",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Query Datadog monitors to check for problems before proceeding with a deployment stage",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "icon.png"        
+    },
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "tags": [
+        "monitoring",
+        "datadog",
+        "release",
+	"staged",
+	"canary"
+    ],
+    "files": [
+        {
+            "path": "datadog-monitor"
+        }
+    ],
+ "content": {
+        "details": {
+            "path": "overview.md"
+        }
+    },
+
+    "branding": {
+        "color": "rgb(120, 71, 166)",
+        "theme": "dark"
+    },
+    
+    "galleryFlags": [
+	"Public"
+    ], 
+
+ "links": {
+        
+	"getstarted": {
+            "uri": "https://docs.datadoghq.com/integrations/azure_devops"
+        },
+	"learn": {
+            "uri": "https://www.docs.datadoghq.com"
+        },
+        "support": {
+            "uri": "https://www.datadoghq.com/support"
+        },
+	"privacypolicy": {
+            "uri": "https://www.datadoghq.com/legal/privacy"
+        },
+        "license": {
+            "uri": "https://www.datadoghq.com/legal/msa"
+        }
+    },
+
+
+"contributions": [
+        {
+            "id": "datadog-monitors",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "datadog-monitor"
+            }
+				},
+				{
+					"id": "datadog-service-endpoint",
+					"description": "Service endpoint type for Datadog",
+					"type": "ms.vss-endpoint.service-endpoint-type",
+					"targets": [ "ms.vss-endpoint.endpoint-types" ],
+					"properties": {
+						"name": "datadog",
+						"displayName": "Datadog",
+					"icons": {
+						"default": "icon.png",
+						"large": "icon.png"
+					},
+					"url":  {
+						"displayName": "Datadog API URL",
+						"value": "https://api.datadoghq.com/api/v1",
+						"isVisible": "false",
+						"required": "false"
+						},
+						"authenticationSchemes": [
+							{
+								"type": "ms.vss-endpoint.endpoint-auth-scheme-token",
+								"headers": [
+									{
+										"name": "DD-API-KEY",
+										"value": "{{endpoint.apitoken}}"
+									},
+									{
+										"name": "DD-APPLICATION-KEY",
+										"value": "{{endpoint.appkey}}"
+									}
+								],
+								"inputDescriptors": [
+									{
+										"id": "apitoken",
+										"name": "i18n:API Token",
+										"description": "i18n:API Token required to connect to Datadog",
+										"inputMode": "textbox",
+										"isConfidential": true,
+										"validation": {
+											"isRequired": true,
+											"dataType": "string",
+											"maxLength": 300
+										}
+									},
+									{
+										"id": "appkey",
+										"name": "i18n:App Key",
+										"description": "i18n:App key required to connect to Datadog",
+										"inputMode": "textbox",
+										"isConfidential": true,
+										"validation": {
+											"isRequired": true,
+											"dataType": "string",
+											"maxLength": 300
+										}
+									}
+								]
+							}
+						],
+						"helpMarkDown": "<a href=\"https://docs.datadoghq.com/api/?lang=bash#authentication\" target=\"_blank\"><b>Learn More</b></a>"
+					}
+				}
+    ]
+}
