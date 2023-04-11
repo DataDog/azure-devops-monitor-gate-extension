@@ -107,6 +107,10 @@
               {
                 "key": "US1-FED",
                 "value": "https://api.ddog-gov.com/api/v1"
+              },
+              {
+                "key": "AP1",
+                "value": "https://api.ap1.datadoghq.com/api/v1"
               }
             ]
           }
@@ -146,6 +150,10 @@
                 {
                   "value": "US1-FED",
                   "displayValue": "US1-FED"
+                },
+                {
+                  "value": "AP1",
+                  "displayValue": "AP1"
                 }
               ]
             }
